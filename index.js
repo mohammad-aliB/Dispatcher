@@ -1,7 +1,7 @@
 var httpModule=require('http');
 var wildcard = require('wildcard');
 var dispatcher = function() {
-    dispatcher.prototype.initialize=function(port,ip){
+    dispatcher.prototype.setUP=function(port,ip){
         httpModule.createServer(function(req,res){
             dispatcher.prototype.dispatch(req,res)
         }).listen(port,ip, function(){
