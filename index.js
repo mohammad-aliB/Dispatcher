@@ -81,7 +81,7 @@ var dispatcher = function() {
         }
         if(method=='get'){
             listenerCb(req, res);
-        }else if(method=='post'{
+        }else if(method=='post'){
             if(req.headers['content-type']=='application/x-www-form-urlencoded'){
                 var body = '';
                     req.on('data', function (data) {
