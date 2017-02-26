@@ -1,13 +1,6 @@
 var httpModule=require('http');
 var wildcard = require('wildcard');
 var dispatcher = function() {
-    dispatcher.prototype.initialize=function(port,ip){
-        httpModule.createServer(function(req,res){
-            dispatcher.dispatch(req,res)
-        }).listen(port,ip, function(){
-            console.log("My server is operating on node");
-        });
-    }
     this.listeners = { get: [ ], post: [ ] };
     var errorPage404Location=null;
     dispatcher.prototype.GetRequest = function(url, callback) {
@@ -121,3 +114,10 @@ var dispatcher = function() {
     }
 }
 module.exports = new dispatcher();
+    exports.initialize=function(port,ip){
+        httpModule.createServer(function(req,res){
+            dispatcher.dispatch(req,res)
+        }).listen(port,ip, function(){
+            console.log("My server is operating on node");
+        });
+    }
