@@ -113,7 +113,7 @@ var dispatcher = function() {
     dispatcher.prototype.getListener = function(url, method,skip) {
 
                             //console.log("C "+url+" : "+method+ " C");
-        for(var i = 0, listener; i<dispatcher.listeners[method].length; i++) {
+        for(var i = 0, listener; i<dispatcher.object.listeners[method].length; i++) {
             listener = this.listeners[method][i];
             if(wildcard(listener.url, url)) {
                 if(skip==0){
