@@ -5,6 +5,7 @@ var server=httpModule.createServer(function(req,res){
         });
 
 var dispatcher = function() {
+    var that=this;
     dispatcher.prototype.setUP=function(port,ip){
         server.listen(port,ip, function(){
             console.log("My server is operating on node");
@@ -113,7 +114,7 @@ var dispatcher = function() {
     dispatcher.prototype.getListener = function(url, method,skip) {
 
                             //console.log("C "+url+" : "+method+ " C");
-        for(var i = 0, listener; i<dispatcher.object.listeners[method].length; i++) {
+        for(var i = 0, listener; i<that.listeners[method].length; i++) {
             listener = this.listeners[method][i];
             if(wildcard(listener.url, url)) {
                 if(skip==0){
