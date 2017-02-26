@@ -3,7 +3,6 @@ var wildcard = require('wildcard');
 var dispatcher = function() {
     dispatcher.prototype.initialize=function(port,ip){
         httpModule.createServer(function(req,res){
-                        console.log(this)
             dispatcher.prototype.dispatch(req,res)
         }).listen(port,ip, function(){
             console.log("My server is operating on node");
@@ -106,6 +105,7 @@ var dispatcher = function() {
         }
     }
     dispatcher.prototype.getListener = function(url, method,skip) {
+        console.log(this.listeners)
                             //console.log("C "+url+" : "+method+ " C");
         for(var i = 0, listener; i<this.listeners[method].length; i++) {
             listener = this.listeners[method][i];
