@@ -48,6 +48,7 @@ var dispatcher = function() {
   //   }
 
     dispatcher.prototype.dispatch = function(req, res) {
+                console.log(this.listeners)
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
         var listener = this.getListener(url.pathname, method,0);
@@ -106,7 +107,7 @@ var dispatcher = function() {
         }
     }
     dispatcher.prototype.getListener = function(url, method,skip) {
-        console.log(this.listeners)
+
                             //console.log("C "+url+" : "+method+ " C");
         for(var i = 0, listener; i<this.listeners[method].length; i++) {
             listener = this.listeners[method][i];
