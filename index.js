@@ -5,6 +5,7 @@ var server=httpModule.createServer(function(req,res){
         });
 
 var dispatcher = function() {
+    this=this;
     dispatcher.prototype.setUP=function(port,ip){
         server.listen(port,ip, function(){
             console.log("My server is operating on node");
