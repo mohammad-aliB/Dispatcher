@@ -1,7 +1,7 @@
 var httpModule=require('http');
 var wildcard = require('wildcard');
 var server=httpModule.createServer(function(req,res){
-            dispatcher.dispatch(req,res)
+            dispatcher.protptype.dispatch(req,res)
         });
 
 var dispatcher = function() {
