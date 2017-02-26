@@ -15,6 +15,8 @@ var dispatcher = function() {
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
         console.log("aaaaaaaaaaaaaaaaaaa")
+        console.log(this.listeners)
+
     }       
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
@@ -50,7 +52,6 @@ var dispatcher = function() {
   //   }
 
     dispatcher.prototype.dispatch = function(req, res) {
-                console.log(this.listeners)
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
         var listener = this.getListener(url.pathname, method,0);
