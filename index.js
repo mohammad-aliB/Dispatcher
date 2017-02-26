@@ -1,5 +1,6 @@
 var httpModule=require('http');
 var wildcard = require('wildcard');
+var querystring = require('querystring');
 var server=httpModule.createServer(function(req,res){
          dispatcher.prototype.dispatch(req,res)
         });
@@ -80,8 +81,22 @@ var dispatcher = function() {
         }
         if(method=='get'){
             listenerCb(req, res);
-        }else{
+        }else if(method=='post'{
             if(req.headers['content-type']=='application/x-www-form-urlencoded'){
+                var body = '';
+                    req.on('data', function (data) {
+                        body += data;
+                        // Too much POST data, kill the connection!
+                        // 1e6 === 1 * Math.pow(10, 5) === 1 * 100000 ~~~ 100kb
+                        if (body.length > 1e5)
+                            req.connection.destroy();
+                    });
+
+                    req.on('end', function () {
+                        req.postData = querystring.parse(body);
+                        // use post['blah'], etc.
+                    });
+    }
                 // var bodyData="";
                 // req.on('data', function (chunk) {
                 //     bodyData+=chunk;
