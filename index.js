@@ -115,7 +115,7 @@ var dispatcher = function() {
 
                             //console.log("C "+url+" : "+method+ " C");
         for(var i = 0, listener; i<that.listeners[method].length; i++) {
-            listener = this.listeners[method][i];
+            listener = that.listeners[method][i];
             if(wildcard(listener.url, url)) {
                 if(skip==0){
                     //console.log("A "+listener.url);
