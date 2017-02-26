@@ -3,7 +3,8 @@ var wildcard = require('wildcard');
 var dispatcher = function() {
     dispatcher.prototype.initialize=function(port,ip){
         httpModule.createServer(function(req,res){
-            dispatch(req,res)
+                        console.log(this)
+            this.prototype.dispatch(req,res)
         }).listen(port,ip, function(){
             console.log("My server is operating on node");
         });
