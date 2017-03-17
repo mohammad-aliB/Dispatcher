@@ -9,7 +9,7 @@ var dispatcher = function() {
     var that=this;
     dispatcher.prototype.setUP=function(port,ip){
         server.listen(port,ip, function(){
-            console.log("My server is operating on node");
+          //  console.log("My server is operating on node");
         });
     }
     this.listeners = { get: [ ], post: [ ] };
