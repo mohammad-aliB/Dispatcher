@@ -16,7 +16,7 @@ var dispatcher = function() {
     var errorPage404Location=null;
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
-        //console.log("aaaaaaaaaaaaaaaaaaa")
+        //console.log("bbbbbbbb")
         //console.log(this.listeners)
 
     }       
