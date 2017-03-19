@@ -108,6 +108,7 @@ var dispatcher = function() {
         console.log(url.pathname)
         var listener = this.getListener(url.pathname, method,skip);
         console.log(this.getListener("/Static/general.css","get",0))
+        console.log(listener)
         if(listener){
             //rc = req.headers.cookie;
             // req.cookieData=[];
