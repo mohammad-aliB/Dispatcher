@@ -18,10 +18,6 @@ var dispatcher = function() {
 
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
-        console.log(this.listeners)
-        //console.log("bbbbbbbb")
-        //console.log(this.listeners)
-
     }       
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
@@ -39,10 +35,7 @@ var dispatcher = function() {
         var fileList=fs.readdirSync(dir);
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push({callback: this.sendFile, url: url+"/"+fileList[i]});
-           // console.log(url+"/"+fileList[i])
         }
-        //console.log(this.listeners)
-        
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("error")
