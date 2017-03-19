@@ -44,6 +44,7 @@ var dispatcher = function() {
         
     }
     dispatcher.prototype.sendFile = function(req, res){
+        console.log("error")
         var path = url.parse(req.url).pathname;
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
@@ -103,6 +104,7 @@ var dispatcher = function() {
        // console.log(this)
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
+        console.log(url.pathname)
         var listener = this.getListener(url.pathname, method,skip);
         if(listener){
             //rc = req.headers.cookie;
