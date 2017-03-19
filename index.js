@@ -1,6 +1,7 @@
 var httpModule=require('http');
 var wildcard = require('wildcard');
 var querystring = require('querystring');
+var fs = require("fs");
 var server=httpModule.createServer(function(req,res){
          dispatcher.prototype.dispatch(req,res)
         });
@@ -13,7 +14,7 @@ var dispatcher = function() {
         });
     }
     this.listeners = { get: [ ], post: [ ] };
-    var errorPage404Location=null;
+
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
         //console.log("bbbbbbbb")
@@ -23,6 +24,7 @@ var dispatcher = function() {
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
     }   
+    var errorPage404Location=null;
     dispatcher.prototype.errorPage404Default = function(req, res) {
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.end("404 error Page not found");
@@ -31,6 +33,45 @@ var dispatcher = function() {
         errorPage404Location=url;
         this.listeners['get'].push({callback: callback,url: url});
     }
+    dispatcher.prototype.staticDirectory = function(url, dir, cb) {
+        var fileList=fs.readdirSync(dir);
+        for (var i = 0, len = fileList.length; i < len; i++) {
+            this.on('get', this.sendFile(fileList[i]), url+"/"+fileList[i]);
+        }
+        console.log(this.on)
+    }
+    /*dispatcher.prototype.sendFile = function(req, res){
+        for(var i = 0, listener; i<staticListeners["data"].length; i++) {
+            //console.log(staticListeners["data"][i]);
+            //console.log(req.url);
+            listener = staticListeners["data"][i];
+            if(listener.url==req.url){
+                path=listener.dir;
+                
+                break;
+            }
+        }
+                //comment out one line below for production servers
+            //res.setHeader('Access-Control-Allow-Origin','*');
+        if(path.split('.').pop()=="html"){
+            res.writeHead(200, {'Content-Type': 'text/html'});
+        }else if(path.split('.').pop()=="css"){
+            res.writeHead(200, {'Content-Type': 'text/css'});           
+        }else if(path.split('.').pop()=="js"){
+            res.writeHead(200, {'Content-Type': 'text/javascript'});           
+        }else if(path.split('.').pop()=="svg"){
+            res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
+        }
+        fs.readFile(path, function(err, data) {
+            if (err){
+                res.writeHead(500);
+                res.end();
+                return;
+            }
+            res.end(data);
+            return;
+        });
+    }*/
   // dispatcher.prototype.setCookie = function(key,value,domain,path,expires,maxAge,Secure,HttpOnly) {
   //       cookie=key+"="+value+"; ";
   //       if(expires){
@@ -53,11 +94,11 @@ var dispatcher = function() {
   //       return cookie;
   //   }
 
-    dispatcher.prototype.dispatch = function(req, res) {
+    dispatcher.prototype.dispatch = function(req, res,skip) {
        // console.log(this)
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
-        var listener = this.getListener(url.pathname, method,0);
+        var listener = this.getListener(url.pathname, method,skip);
         if(listener){
             //rc = req.headers.cookie;
             // req.cookieData=[];
