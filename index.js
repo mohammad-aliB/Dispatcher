@@ -102,15 +102,10 @@ var dispatcher = function() {
   //   }
 
     dispatcher.prototype.dispatch = function(req, res,skip) {
-       // console.log(this)
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
-        console.log(url.pathname)
-        console.log(method)
-        console.log(skip||'')
+        if(!skip){skip=0}
         var listener = this.getListener(url.pathname, method,skip);
-        console.log(this.getListener("/Static/general.css","get",0))
-        console.log(listener)
         if(listener){
             //rc = req.headers.cookie;
             // req.cookieData=[];
