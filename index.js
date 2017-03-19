@@ -106,6 +106,8 @@ var dispatcher = function() {
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
         console.log(url.pathname)
+        console.log(method)
+        console.log(skip||'')
         var listener = this.getListener(url.pathname, method,skip);
         console.log(this.getListener("/Static/general.css","get",0))
         console.log(listener)
