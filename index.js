@@ -38,7 +38,7 @@ var dispatcher = function() {
         }
     }
     dispatcher.prototype.sendFile = function(req, res){
-        console.log("error")
+        //console.log("error")
         var path = url.parse(req.url).pathname;
         //console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
