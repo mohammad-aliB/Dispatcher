@@ -39,8 +39,9 @@ var dispatcher = function() {
         var fileList=fs.readdirSync(dir);
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push(this.sendFile, url+"/"+fileList[i]);
+            console.log(url+"/"+fileList[i])
         }
-        console.log(url+"/"+fileList[i])
+        
     }
     dispatcher.prototype.sendFile = function(req, res){
         var path = url.parse(req.url).pathname;
