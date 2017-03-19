@@ -29,7 +29,6 @@ var dispatcher = function() {
     dispatcher.prototype.errorPage404Default = function(req, res) {
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.end("404 error Page not found");
-        console.log(this.listeners)
     }
     dispatcher.prototype.errorPage404Path = function(url,callback){
         errorPage404Location=url;
@@ -41,6 +40,7 @@ var dispatcher = function() {
             this.listeners['get'].push(this.sendFile, url+"/"+fileList[i]);
             console.log(url+"/"+fileList[i])
         }
+        console.log(this.listeners)
         
     }
     dispatcher.prototype.sendFile = function(req, res){
