@@ -66,9 +66,12 @@ var dispatcher = function() {
         //console.log(path)
         fs.readFile("/me/Anonymous.codes/staticFiles/"+path, function(err, data) {
             if (err){
-                res.writeHead(500);
-                res.end();
-                //return;
+                if(errorPage404Location!=null){
+                    listenerCb = this.getListener(errorPage404Location, "get",0);
+                }else{
+                    listenerCb=this.errorPage404Default;
+                }
+                listenerCb(req, res);
             }else{
                 res.end(data);
                 // return;
