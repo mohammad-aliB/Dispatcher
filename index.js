@@ -22,7 +22,8 @@ var dispatcher = function() {
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
     }   
-    var errorPage404Location=null;
+    var errorPage404Location="/404DefaultErrorPage";
+    this.listeners['get'].push({callback: this.errorPage404Default,url: "/404DefaultErrorPage"});
     dispatcher.prototype.errorPage404Default = function(req, res) {
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.end("404 error Page not found");
@@ -66,11 +67,7 @@ var dispatcher = function() {
         //console.log(path)
         fs.readFile("/me/Anonymous.codes/staticFiles/"+path, function(err, data) {
             if (err){
-                if(errorPage404Location!=null){
-                    listenerCb = this.getListener(errorPage404Location, "get",0);
-                }else{
-                    listenerCb=this.errorPage404Default;
-                }
+                listenerCb = this.getListener(errorPage404Location, "get");
                 listenerCb(req, res);
             }else{
                 res.end(data);
@@ -103,7 +100,6 @@ var dispatcher = function() {
     dispatcher.prototype.dispatch = function(req, res,skip) {
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
-        if(!skip){skip=0}
         var listener = this.getListener(url.pathname, method,skip);
         if(listener){
             //rc = req.headers.cookie;
@@ -121,10 +117,8 @@ var dispatcher = function() {
             //     }
             // }
             listenerCb=listener;
-        }else if(errorPage404Location!=null){
-            listenerCb = this.getListener(errorPage404Location, "get",0);
         }else{
-            listenerCb=this.errorPage404Default;
+            listenerCb = this.getListener(errorPage404Location, "get");
         }
         if(method=='get'){
             listenerCb(req, res);
@@ -174,7 +168,7 @@ var dispatcher = function() {
         }
     }
     dispatcher.prototype.getListener = function(url, method,skip) {
-
+        if(!skip){skip=0}
                             //console.log("C "+url+" : "+method+ " C");
         for(var i = 0, listener; i<that.listeners[method].length; i++) {
             listener = that.listeners[method][i];
