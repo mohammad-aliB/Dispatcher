@@ -63,8 +63,8 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
         }
         path=path.split("/")[2]
-        console.log(path)
-        fs.readFile("/me/Anonymous.codes/Static/"+path, function(err, data) {
+        //console.log(path)
+        fs.readFile("/me/Anonymous.codes/staticFiles/"+path, function(err, data) {
             if (err){
                 res.writeHead(500);
                 res.end();
