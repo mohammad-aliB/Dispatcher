@@ -62,7 +62,7 @@ var dispatcher = function() {
         }else if(path.split('.').pop()=="svg"){
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
         }
-        path=path.split("/")[2]
+        path=path.split("/")[3]
         //console.log(path)
         fs.readFile("/me/Anonymous.codes/staticFiles/"+path, function(err, data) {
             if (err){
