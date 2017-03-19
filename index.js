@@ -18,6 +18,7 @@ var dispatcher = function() {
 
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
+        console.log(this.listeners)
         //console.log("bbbbbbbb")
         //console.log(this.listeners)
 
@@ -106,7 +107,7 @@ var dispatcher = function() {
         var method = req.method.toLowerCase();
         console.log(url.pathname)
         var listener = this.getListener(url.pathname, method,skip);
-        console.log(this.getListener("/Static/general.css","get",0))
+       // console.log(this.getListener("/Static/general.css","get",0))
         if(listener){
             //rc = req.headers.cookie;
             // req.cookieData=[];
