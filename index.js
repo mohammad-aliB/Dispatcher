@@ -38,9 +38,9 @@ var dispatcher = function() {
         var fileList=fs.readdirSync(dir);
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push(this.sendFile, url+"/"+fileList[i]);
-            console.log(url+"/"+fileList[i])
+           // console.log(url+"/"+fileList[i])
         }
-        console.log(this.listeners)
+        //console.log(this.listeners)
         
     }
     dispatcher.prototype.sendFile = function(req, res){
@@ -106,6 +106,7 @@ var dispatcher = function() {
         var method = req.method.toLowerCase();
         console.log(url.pathname)
         var listener = this.getListener(url.pathname, method,skip);
+        console.log(this.getListener("/Static/general.css","get",0))
         if(listener){
             //rc = req.headers.cookie;
             // req.cookieData=[];
