@@ -36,11 +36,10 @@ var dispatcher = function() {
     }
     dispatcher.prototype.staticDirectory = function(url, dir, cb) {
         var fileList=fs.readdirSync(dir);
-        console.log(this)
         for (var i = 0, len = fileList.length; i < len; i++) {
-            that.on('get', this.sendFile, url+"/"+fileList[i]);
+            this.listeners['get'].push(this.sendFile, url+"/"+fileList[i]);
         }
-        console.log(this.on)
+        console.log(this.listeners)
     }
     dispatcher.prototype.sendFile = function(req, res){
         var path = url.parse(req.url).pathname;
