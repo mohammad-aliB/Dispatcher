@@ -40,6 +40,7 @@ var dispatcher = function() {
     dispatcher.prototype.sendFile = function(req, res){
         console.log("error")
         var path = url.parse(req.url).pathname;
+        console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
             //console.log(req.url);
@@ -61,7 +62,7 @@ var dispatcher = function() {
         }else if(path.split('.').pop()=="svg"){
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
         }
-        fs.readFile(path, function(err, data) {
+        fs.readFile("/me/Anonymous.codes/Static/"+path, function(err, data) {
             if (err){
                 res.writeHead(500);
                 res.end();
