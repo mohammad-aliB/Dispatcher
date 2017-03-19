@@ -2,6 +2,7 @@ var httpModule=require('http');
 var wildcard = require('wildcard');
 var querystring = require('querystring');
 var fs = require("fs");
+var url=require("url")
 var server=httpModule.createServer(function(req,res){
          dispatcher.prototype.dispatch(req,res)
         });
@@ -36,21 +37,22 @@ var dispatcher = function() {
     dispatcher.prototype.staticDirectory = function(url, dir, cb) {
         var fileList=fs.readdirSync(dir);
         for (var i = 0, len = fileList.length; i < len; i++) {
-            this.on('get', this.sendFile(fileList[i]), url+"/"+fileList[i]);
+            this.on('get', this.sendFile, url+"/"+fileList[i]);
         }
         console.log(this.on)
     }
-    /*dispatcher.prototype.sendFile = function(req, res){
-        for(var i = 0, listener; i<staticListeners["data"].length; i++) {
+    dispatcher.prototype.sendFile = function(req, res){
+        var path = url.parse(req.url).pathname;
+      //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
             //console.log(req.url);
-            listener = staticListeners["data"][i];
-            if(listener.url==req.url){
-                path=listener.dir;
+          //  listener = staticListeners["data"][i];
+          //  if(listener.url==req.url){
+          //      path=listener.dir;
                 
-                break;
-            }
-        }
+     //           break;
+       //     }
+       // }
                 //comment out one line below for production servers
             //res.setHeader('Access-Control-Allow-Origin','*');
         if(path.split('.').pop()=="html"){
@@ -66,12 +68,13 @@ var dispatcher = function() {
             if (err){
                 res.writeHead(500);
                 res.end();
-                return;
+                //return;
+            }else{
+                res.end(data);
+                // return;
             }
-            res.end(data);
-            return;
         });
-    }*/
+    }
   // dispatcher.prototype.setCookie = function(key,value,domain,path,expires,maxAge,Secure,HttpOnly) {
   //       cookie=key+"="+value+"; ";
   //       if(expires){
