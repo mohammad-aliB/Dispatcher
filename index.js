@@ -120,7 +120,7 @@ var dispatcher = function() {
         }else{
             listenerCb = this.getListener(errorPage404Location, "get");
         }
-        console.log("dispatch"+url.pathname);
+        console.log("dispatch"+url.pathname+listenerCb);
         if(method=='get'){
 
             listenerCb(req, res);
