@@ -137,10 +137,10 @@ var dispatcher = function() {
 
                     req.on('end', function () {
                         req.postData = querystring.parse(body);
-                        console.log("end of body data");
+                        //console.log("end of body data");
                         // use post['blah'], etc.
                     });
-            
+                    listenerCb(req, res);
                 // var bodyData="";
                 // req.on('data', function (chunk) {
                 //     bodyData+=chunk;
