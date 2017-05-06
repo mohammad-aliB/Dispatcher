@@ -127,7 +127,7 @@ var dispatcher = function() {
         }else if(method=='post'){
             if(req.headers['content-type']=='application/x-www-form-urlencoded'){
                 var body = '';
-                    req.postData=[];
+                    //req.postData=[];
                     req.on('data', function (data) {
                         body += data;
                         // Too much POST data, kill the connection!
@@ -138,10 +138,11 @@ var dispatcher = function() {
 
                     req.on('end', function () {
                         req.postData = querystring.parse(body);
+                        listenerCb(req, res);
+
                         //console.log("end of body data");
                         // use post['blah'], etc.
                     });
-                    listenerCb(req, res);
                 // var bodyData="";
                 // req.on('data', function (chunk) {
                 //     bodyData+=chunk;
