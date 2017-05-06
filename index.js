@@ -127,6 +127,7 @@ var dispatcher = function() {
         }else if(method=='post'){
             if(req.headers['content-type']=='application/x-www-form-urlencoded'){
                 var body = '';
+                    req.postData=[];
                     req.on('data', function (data) {
                         body += data;
                         // Too much POST data, kill the connection!
