@@ -98,7 +98,6 @@ var dispatcher = function() {
   //   }
 
     dispatcher.prototype.dispatch = function(req, res,skip) {
-        console.log("dispatch"+req);
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
         var listener = this.getListener(url.pathname, method,skip);
@@ -121,6 +120,7 @@ var dispatcher = function() {
         }else{
             listenerCb = this.getListener(errorPage404Location, "get");
         }
+        console.log("dispatch"+url);
         if(method=='get'){
 
             listenerCb(req, res);
