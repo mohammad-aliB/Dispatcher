@@ -137,6 +137,7 @@ var dispatcher = function() {
 
                     req.on('end', function () {
                         req.postData = querystring.parse(body);
+                        console.log("end of body data");
                         // use post['blah'], etc.
                     });
             
