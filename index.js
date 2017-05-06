@@ -24,7 +24,7 @@ var dispatcher = function() {
     }   
     var errorPage404Location="/404DefaultErrorPage";
     this.listeners['get'].push({callback: this.errorPage404Default,url: "/404DefaultErrorPage"});
-    dispatcher.prototype.errorPage404Default = function(req, res) {
+    function errorPage404Default(req, res) {
         res.writeHead(404, {'Content-Type': 'text/html'});
         res.end("404 error Page not found");
     }
