@@ -118,7 +118,7 @@ var dispatcher = function() {
             // }
             listenerCb=listener;
         }else{
-            listenerCb = this.getListener(errorPage404Location, "get");
+            listenerCb = this.getListener(errorPage404Location, "get",0);
         }
         console.log("dispatch"+url.pathname+listenerCb);
         if(method=='get'){
@@ -176,7 +176,7 @@ var dispatcher = function() {
             listener = that.listeners[method][i];
             if(wildcard(listener.url, url)) {
                 if(skip==0){
-                    //console.log("A "+listener.url);
+                    console.log("A "+listener.url);
                     //console.log("B "+url+ " B");
                     return listener.callback;
                 }else{
