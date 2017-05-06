@@ -98,6 +98,7 @@ var dispatcher = function() {
   //   }
 
     dispatcher.prototype.dispatch = function(req, res,skip) {
+        console.log("dispatch"+req);
         var url = require('url').parse(req.url, true);
         var method = req.method.toLowerCase();
         var listener = this.getListener(url.pathname, method,skip);
@@ -121,7 +122,7 @@ var dispatcher = function() {
             listenerCb = this.getListener(errorPage404Location, "get");
         }
         if(method=='get'){
-            console.log(listenerCb);
+
             listenerCb(req, res);
         }else if(method=='post'){
             if(req.headers['content-type']=='application/x-www-form-urlencoded'){
