@@ -175,15 +175,17 @@ var dispatcher = function() {
     dispatcher.prototype.getListener = function(url, method,skip) {
         if(!skip){skip=0}
                             //console.log("C "+url+" : "+method+ " C");
-        for(var i = 0, listener; i<that.listeners[method].length; i++) {
-            listener = that.listeners[method][i];
-            if(wildcard(listener.url, url)) {
-                if(skip==0){
-                    //console.log("A "+listener.url);
-                    //console.log("B "+url+ " B");
-                    return listener.callback;
-                }else{
-                    skip=skip-1;
+        if(method=="get"||method=="post"){
+            for(var i = 0, listener; i<that.listeners[method].length; i++) {
+                listener = that.listeners[method][i];
+                if(wildcard(listener.url, url)) {
+                    if(skip==0){
+                        //console.log("A "+listener.url);
+                        //console.log("B "+url+ " B");
+                        return listener.callback;
+                    }else{
+                        skip=skip-1;
+                    }
                 }
             }
         }
