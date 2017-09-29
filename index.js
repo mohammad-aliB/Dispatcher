@@ -65,7 +65,8 @@ var dispatcher = function() {
         }
         path=path.split("/")[3]
         //console.log(path)
-        fs.readFile("/me/Anonymous.codes/staticFiles/"+path, function(err, data) {
+        //the line below breaks anonymous.codes
+        fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
                 listenerCb = this.getListener(errorPage404Location, "get");
                 listenerCb(req, res);
