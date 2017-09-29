@@ -37,6 +37,7 @@ var dispatcher = function() {
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push({callback: this.sendFile, url: url+"/"+fileList[i]});
         }
+        console.log(this.listeners['get'])
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("sending files")
