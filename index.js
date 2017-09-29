@@ -42,9 +42,9 @@ var dispatcher = function() {
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("sending files")
-        console.log(req.url)
+        //console.log(req.url)
         var path = url.parse(req.url).pathname;
-        console.log(path)
+        //console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
             //console.log(req.url);
@@ -68,15 +68,15 @@ var dispatcher = function() {
         }else if(path.split('.').pop()=="jpeg"){
             res.writeHead(200, {'Content-Type': 'image/jpeg'});      
         }
-        path=path.split("/")[3]
-        console.log(path)
+        path=path.split("/")[2]
+        //console.log(path)
       
 
         //the line below breaks anonymous.codes
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
-                console.log("errrororrororor 404 not found static asset"+path);
+               // console.log("errrororrororor 404 not found static asset"+path);
                 listenerCb(req, res);
             }else{
                 res.end(data);
