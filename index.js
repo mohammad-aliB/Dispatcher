@@ -68,6 +68,7 @@ var dispatcher = function() {
         //the line below breaks anonymous.codes
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
+                console.log(path);
                 listenerCb = this.getListener(errorPage404Location, "get");
                 listenerCb(req, res);
             }else{
