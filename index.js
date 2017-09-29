@@ -18,7 +18,7 @@ var dispatcher = function() {
 
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
-        console.log(this.listeners['get'])
+       // console.log(this.listeners['get'])
 
     }       
     dispatcher.prototype.PostRequest = function(url, callback) {
@@ -41,7 +41,7 @@ var dispatcher = function() {
         }
     }
     dispatcher.prototype.sendFile = function(req, res){
-        console.log("sending files")
+        //console.log("sending files")
         //console.log(req.url)
         var path = url.parse(req.url).pathname;
         //console.log(path)
