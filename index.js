@@ -65,11 +65,11 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
         }
         path=path.split("/")[3]
-        //console.log(path)
+        console.log(path)
         //the line below breaks anonymous.codes
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
-                listenerCb = this.getListener(errorPage404Location, "get");
+                listenerCb = that.getListener(errorPage404Location, "get");
                 listenerCb(req, res);
             }else{
                 res.end(data);
