@@ -19,7 +19,7 @@ var dispatcher = function() {
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
         console.log(this.listeners['get'])
-        
+
     }       
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
@@ -65,6 +65,8 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'text/javascript'});           
         }else if(path.split('.').pop()=="svg"){
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
+        }else{
+            res.writeHead(200, {'Content-Type': 'text/html'});      
         }
         path=path.split("/")[3]
         //the line below breaks anonymous.codes
