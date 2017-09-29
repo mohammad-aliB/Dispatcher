@@ -42,7 +42,6 @@ var dispatcher = function() {
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("sending files")
-        console.log(req.url)
         var path = url.parse(req.url).pathname;
         //console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
@@ -69,6 +68,8 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'text/html'});      
         }
         path=path.split("/")[3]
+        console.log(path)
+
         //the line below breaks anonymous.codes
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
