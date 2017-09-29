@@ -188,9 +188,10 @@ var dispatcher = function() {
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
                 listener = that.listeners[method][i];
                 if(wildcard(listener.url, url)) {
+                            console.log(listener);
+                    
                     if(skip==0){
 
-                            console.log(listener);
                         
                         //console.log("A "+listener.url);
                         //console.log("B "+url+ " B");
