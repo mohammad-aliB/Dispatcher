@@ -42,9 +42,9 @@ var dispatcher = function() {
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("sending files")
-        //console.log(req.url)
+        console.log(req.url)
         var path = url.parse(req.url).pathname;
-        //console.log(path)
+        console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
             //console.log(req.url);
