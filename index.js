@@ -189,9 +189,9 @@ var dispatcher = function() {
                 listener = that.listeners[method][i];
                 if(wildcard(listener.url, url)) {
                     if(skip==0){
-                        if(url=="/Static/TheLyon.jpeg"){
+
                             console.log(listener);
-                        }
+                        
                         //console.log("A "+listener.url);
                         //console.log("B "+url+ " B");
                         return listener.callback;
