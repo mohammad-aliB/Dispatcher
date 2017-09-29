@@ -42,9 +42,9 @@ var dispatcher = function() {
     }
     dispatcher.prototype.sendFile = function(req, res){
         console.log("sending files")
-        console.log(req.url)
+        //console.log(req.url)
         var path = url.parse(req.url).pathname;
-        console.log(path)
+        //console.log(path)
       //  for(var i = 0, listener; i<staticListeners["data"].length; i++) {
             //console.log(staticListeners["data"][i]);
             //console.log(req.url);
@@ -183,11 +183,12 @@ var dispatcher = function() {
     }
     dispatcher.prototype.getListener = function(url, method,skip) {
         if(!skip){skip=0}
+                console.log(url+""+method+""+skip);
+
                             //console.log("C "+url+" : "+method+ " C");
         if(method=="get"||method=="post"){
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
                 listener = that.listeners[method][i];
-                console.log(url);
 
                 if(wildcard(listener.url, url)) {
 
