@@ -73,6 +73,7 @@ var dispatcher = function() {
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
+                console.log("errrororrororor 404 not found static asset");
                 listenerCb(req, res);
             }else{
                 res.end(data);
