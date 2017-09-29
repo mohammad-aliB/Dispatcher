@@ -18,6 +18,8 @@ var dispatcher = function() {
 
     dispatcher.prototype.GetRequest = function(url, callback) {
         this.listeners['get'].push({callback: callback,url: url});
+        console.log(this.listeners['get'])
+        
     }       
     dispatcher.prototype.PostRequest = function(url, callback) {
         this.listeners['post'].push({callback: callback,url: url});
