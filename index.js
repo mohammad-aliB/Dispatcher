@@ -69,6 +69,7 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'image/jpeg'});      
         }
         path=path.split("/")[3]
+        console.log(path)
       
 
         //the line below breaks anonymous.codes
