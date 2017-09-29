@@ -34,6 +34,7 @@ var dispatcher = function() {
     }
     dispatcher.prototype.staticDirectory = function(url, dir) {
         var fileList=fs.readdirSync(dir);
+                console.log(fileList)
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push({callback: this.sendFile, url: url+"/"+fileList[i]});
         }
@@ -66,7 +67,6 @@ var dispatcher = function() {
         path=path.split("/")[3]
         //console.log(path)
         //the line below breaks anonymous.codes
-        console.log("path "+path)
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
                 listenerCb = this.getListener(errorPage404Location, "get");
