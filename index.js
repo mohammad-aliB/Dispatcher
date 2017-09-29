@@ -64,11 +64,11 @@ var dispatcher = function() {
             res.writeHead(200, {'Content-Type': 'text/javascript'});           
         }else if(path.split('.').pop()=="svg"){
             res.writeHead(200, {'Content-Type': 'image/svg+xml'});           
-        }else{
-            res.writeHead(200, {'Content-Type': 'text/html'});      
+        }else if(path.split('.').pop()=="jpeg"){
+            res.writeHead(200, {'Content-Type': 'image/jpeg'});      
         }
         path=path.split("/")[3]
-        console.log(path)
+      
 
         //the line below breaks anonymous.codes
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
