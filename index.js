@@ -76,7 +76,7 @@ var dispatcher = function() {
         fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
-                console.log("errrororrororor 404 not found static asset");
+                console.log("errrororrororor 404 not found static asset"+path);
                 listenerCb(req, res);
             }else{
                 res.end(data);
@@ -183,8 +183,6 @@ var dispatcher = function() {
     }
     dispatcher.prototype.getListener = function(url, method,skip) {
         if(!skip){skip=0}
-                console.log(url+""+method+""+skip);
-
                             //console.log("C "+url+" : "+method+ " C");
         if(method=="get"||method=="post"){
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
