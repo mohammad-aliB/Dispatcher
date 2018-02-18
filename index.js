@@ -36,10 +36,10 @@ var dispatcher = function() {
         this.listeners['get'].push({callback: callback,url: url});
     }
     dispatcher.prototype.staticDirectory = function(url, dir) {
-        console.log("hello world");
+        //console.log("hello world");
         staticDirectory=dir;
         var fileList=fs.readdirSync(dir);
-        console.log(fileList);
+        //console.log(fileList);
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push({callback: this.sendFile, url: url+"/"+fileList[i]});
         }
@@ -80,7 +80,7 @@ var dispatcher = function() {
         fs.readFile(staticDirectory+"/"+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
-                console.log("errrororrororor 404 not found static asset"+staticDirectory+"/"+path);
+                //console.log("errrororrororor 404 not found static asset"+staticDirectory+"/"+path);
                 listenerCb(req, res);
             }else{
                 res.end(data);
