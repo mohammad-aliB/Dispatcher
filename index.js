@@ -3,6 +3,7 @@ var wildcard = require('wildcard');
 var querystring = require('querystring');
 var fs = require("fs");
 var url=require("url")
+var staticDirectory="";
 var server=httpModule.createServer(function(req,res){
          dispatcher.prototype.dispatch(req,res)
         });
@@ -35,6 +36,7 @@ var dispatcher = function() {
         this.listeners['get'].push({callback: callback,url: url});
     }
     dispatcher.prototype.staticDirectory = function(url, dir) {
+        staticDirectory=dir;
         var fileList=fs.readdirSync(dir);
         for (var i = 0, len = fileList.length; i < len; i++) {
             this.listeners['get'].push({callback: this.sendFile, url: url+"/"+fileList[i]});
@@ -73,7 +75,7 @@ var dispatcher = function() {
       
 
         //the line below breaks anonymous.codes
-        fs.readFile("/TheLyon/TheLyon/staticFiles/"+path, function(err, data) {
+        fs.readFile(staticDirectory+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
                // console.log("errrororrororor 404 not found static asset"+path);
