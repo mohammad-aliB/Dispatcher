@@ -75,7 +75,7 @@ var dispatcher = function() {
       
 
         //the line below breaks anonymous.codes
-        fs.readFile(staticDirectory+path, function(err, data) {
+        fs.readFile(staticDirectory+"/"+path, function(err, data) {
             if (err){
                 listenerCb = that.getListener(errorPage404Location, "get");
                // console.log("errrororrororor 404 not found static asset"+path);
