@@ -36,6 +36,7 @@ var dispatcher = function() {
         this.listeners['get'].push({callback: callback,url: url});
     }
     dispatcher.prototype.staticDirectory = function(url, dir) {
+        console.log("hello world");
         staticDirectory=dir;
         var fileList=fs.readdirSync(dir);
         console.log(fileList);
