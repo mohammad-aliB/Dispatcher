@@ -191,8 +191,8 @@ var dispatcher = function() {
         if(method=="get"||method=="post"){
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
                 listener = that.listeners[method][i];
-                console.log("listeners");
-                console.log(that.listeners);
+                //console.log("listeners");
+               // console.log(that.listeners);
                // if(wildcard(listener.url, url)) {
                 if(listener.url==url){
                     if(skip==0){
