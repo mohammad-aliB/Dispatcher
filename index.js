@@ -1,5 +1,5 @@
 var httpModule=require('http');
-var wildcard = require('wildcard');
+//var wildcard = require('wildcard');
 var querystring = require('querystring');
 var fs = require("fs");
 var url=require("url")
@@ -192,8 +192,8 @@ var dispatcher = function() {
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
                 listener = that.listeners[method][i];
 
-                if(wildcard(listener.url, url)) {
-
+               // if(wildcard(listener.url, url)) {
+                if(listener.url==url)
                     if(skip==0){
 
                         
