@@ -193,7 +193,7 @@ var dispatcher = function() {
                 listener = that.listeners[method][i];
 
                // if(wildcard(listener.url, url)) {
-                if(listener.url==url)
+                if(listener.url==url){
                     if(skip==0){
 
                         
