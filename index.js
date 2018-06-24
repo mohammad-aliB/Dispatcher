@@ -12,7 +12,7 @@ var dispatcher = function() {
     var that=this;
     dispatcher.prototype.setUP=function(port,ip){
         server.listen(port,ip, function(){
-            console.log("My server is operating on node");
+           // console.log("My server is operating on node");
         });
     }
     this.listeners = { get: [ ], post: [ ] };
@@ -191,7 +191,7 @@ var dispatcher = function() {
         if(method=="get"||method=="post"){
             for(var i = 0, listener; i<that.listeners[method].length; i++) {
                 listener = that.listeners[method][i];
-                console.log(listener.url+" space"+url);
+                //console.log(listener.url+" space"+url);
                // if(wildcard(listener.url, url)) {
                 if(listener.url==url){
                     if(skip==0){
