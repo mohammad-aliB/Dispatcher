@@ -1,7 +1,7 @@
 # dispatcher
 This custom web application framework was created to be very light weight and fast, it allows for some basic functionality similar to Express. An example of how it could be used can be found below:
 
-var dispatcher=require("/Dispatcher/index.js");
+var dispatcher=require("/Dispatcher/index.js");<br>
 dispatcher.setUP(80,'172.104.16.138');
 
 dispatcher.staticDirectory('/Static','/Blog/staticAssets');
